@@ -1,22 +1,22 @@
-# Volleyball Neural Network
+# Volleyball-Neuronales Netz
 
-This repository contains a TensorFlow/Keras implementation for predicting the winner of a volleyball match based on statistical differences between two teams. The dataset should be stored in a CSV file named `vnl_dataset.csv` in the repository root or provide the path accordingly.
+Dieses Repository enthält eine TensorFlow/Keras-Implementierung zur Vorhersage des Gewinners eines Volleyballspiels anhand statistischer Differenzen zwischen zwei Teams. Der Datensatz muss als CSV-Datei `vnl_dataset.csv` im Hauptverzeichnis gespeichert werden oder der Pfad entsprechend angepasst werden.
 
-## Usage
+## Verwendung
 
-1. Install the required dependencies:
+1. Benötigte Abhängigkeiten installieren:
    ```bash
    pip install pandas scikit-learn tensorflow matplotlib
    ```
-2. Run the training script:
+2. Trainingsskript ausführen:
    ```bash
    python train_volleyball_nn.py
    ```
-   The script loads the dataset, splits it into training and test sets, trains a neural network, prints evaluation metrics, and optionally plots training curves and a ROC curve.
+   Das Skript lädt den Datensatz, teilt ihn in Trainings- und Testdaten auf, trainiert ein neuronales Netz, gibt Evaluierungsmetriken aus und zeigt optional Trainingsverläufe sowie eine ROC-Kurve an.
 
-## Dataset Format
+## Datensatzformat
 
-The CSV file must contain the following columns:
+Die CSV-Datei muss die folgenden Spalten enthalten:
 - `attack_diff`
 - `block_diff`
 - `serve_diff`
@@ -27,6 +27,6 @@ The CSV file must contain the following columns:
 - `set_diff`
 - `top_scorer_1_diff`
 - `top_scorer_2_diff`
-- `label` (1 if Team A wins, 0 if Team B wins)
+- `label` (1 wenn Team A gewinnt, 0 wenn Team B gewinnt)
 
-Ensure there are no missing values for these columns.
+Stelle sicher, dass für diese Spalten keine fehlenden Werte vorhanden sind.
