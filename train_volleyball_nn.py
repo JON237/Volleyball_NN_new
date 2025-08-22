@@ -4,12 +4,12 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_a
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
-# Load dataset
+# Datensatz laden
 DATA_PATH = 'vnl_dataset.csv'
 
 df = pd.read_csv(DATA_PATH)
 
-# Selected feature columns
+# Ausgewählte Feature-Spalten
 FEATURES = [
     'attack_diff',
     'block_diff',
@@ -26,10 +26,10 @@ FEATURES = [
 X = df[FEATURES]
 y = df['label']
 
-# Split into train and test sets
+# Aufteilung in Trainings- und Testdaten
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Build the neural network
+# Neuronales Netz aufbauen
 model = tf.keras.Sequential([
     tf.keras.layers.Input(shape=(len(FEATURES),)),
     tf.keras.layers.Dense(64, activation='relu'),
@@ -40,10 +40,10 @@ model = tf.keras.Sequential([
 
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
-# Train the model
+# Modell trainieren
 history = model.fit(X_train, y_train, epochs=100, batch_size=32, validation_split=0.1, verbose=0)
 
-# Evaluate on the test set
+# Auswertung auf dem Testdatensatz
 pred_probs = model.predict(X_test).ravel()
 pred_labels = (pred_probs > 0.5).astype(int)
 
@@ -57,11 +57,11 @@ print(f"Precision: {precision:.4f}")
 print(f"Recall: {recall:.4f}")
 print(f"ROC-AUC: {roc_auc:.4f}")
 
-# Optional visualizations
+# Optionale Visualisierungen
 try:
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
 
-    # Plot training history
+    # Trainingsverlauf anzeigen
     ax1.plot(history.history['loss'], label='loss')
     ax1.plot(history.history['val_loss'], label='val_loss')
     ax1.set_title('Training Loss')
@@ -79,7 +79,7 @@ try:
     plt.tight_layout()
     plt.show()
 
-    # ROC curve
+    # ROC-Kurve
     fpr, tpr, _ = roc_curve(y_test, pred_probs)
     plt.figure()
     plt.plot(fpr, tpr, label=f'ROC curve (area = {roc_auc:.4f})')
@@ -90,5 +90,5 @@ try:
     plt.legend(loc='best')
     plt.show()
 except Exception as e:
-    print(f"Visualization failed: {e}")
+    print(f"Visualisierung fehlgeschlagen: {e}")
 
