@@ -1,0 +1,6 @@
+# Ignore generated scaler artifacts
+*.joblib
+
+# Byte-compiled / cached files
+__pycache__/
+*.py[cod]
