@@ -28,5 +28,8 @@ Die CSV-Datei muss die folgenden Spalten enthalten:
 - `top_scorer_1_diff`
 - `top_scorer_2_diff`
 - `label` (1 wenn Team A gewinnt, 0 wenn Team B gewinnt)
+- `team` (Name oder Identifier des betrachteten Teams)
+- `opponent` (Name oder Identifier des Gegners)
+- Optional: `match_date` oder `match_id`, um die zeitliche Reihenfolge der Partien festzulegen
 
-Stelle sicher, dass für diese Spalten keine fehlenden Werte vorhanden sind.
+Stelle sicher, dass für diese Spalten keine fehlenden Werte vorhanden sind. Das Skript erweitert den Datensatz automatisch um Sequenzen der letzten `SEQUENCE_LENGTH` (Standard: 5) Spiele pro Team und speichert sie als 3D-Arrays (`X_sequences.npy` und `y_sequences.npy`). Diese Sequenzen dienen anschließend als Eingabe für ein LSTM-basiertes Modell zur Spielvorhersage.
